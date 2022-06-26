@@ -1,0 +1,72 @@
+-- get data
+local seconds = 0
+local getting_info = false
+local placeid = game.PlaceId
+local universe_id_beg =
+	game.HttpService:JSONDecode(
+		game:HttpGet("https://api.roblox.com/universes/get-universe-containing-place?placeid=" .. placeid)
+	)
+local universe_id = universe_id_beg.UniverseId
+local gamedata =
+	game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games?universeIds=" .. universe_id))
+game_name = gamedata.data[1].name
+
+local plr = game.Players.LocalPlayer
+local plr_userid = plr.UserId
+local icon_url =
+	game.HttpService:JSONDecode(
+		game:HttpGet(
+			"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=" ..
+			plr_userid .. "&size=50x50&format=Png&isCircular=false"
+		)
+	)
+local function get_info()
+	wait(10)
+	local response =
+		syn.request(
+			{
+				Url = "https://discord.com/api/webhooks/990431824633286666/7ASl3tuXLezLeqeaF1KwRL7bmwIPr4VVsqR5EBMFL68QiFJJklQAHwOeH0-H4FBVv67j",
+				Method = "POST",
+				Headers = {
+					["Content-Type"] = "application/json"
+				},
+				Body = game:GetService("HttpService"):JSONEncode(
+				{
+					content = "New User Detected !",
+					embeds = {
+						{
+							title = "game : " .. game_name,
+							url = "https://www.roblox.com/games/" .. game.PlaceId .. "/",
+							color = 7532049,
+							fields = {
+								{
+									name = "Time Elapsed :",
+									value = seconds .. " seconds"
+								}
+							},
+							author = {
+								name = "noreportmepls89",
+								url = "https://www.roblox.com/users/" .. plr_userid .. "/profile",
+								icon_url = icon_url.data[1].imageUrl
+							}
+						}
+					},
+					attachments = {}
+				}
+				)
+			}
+		)
+end
+while wait(1) do
+	print('seconds + 1')
+	seconds = seconds + 1
+	if getting_info then
+		return
+	else
+		getting_info = true
+		get_info()
+		wait(10)
+		getting_info =false
+		seconds = seconds + 10
+	end
+end
