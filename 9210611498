@@ -1,3 +1,10 @@
+local values = game:GetService("Workspace").Players.noreportmepls89.Handler.Values.Thirst
+local Thirst = values.Thirst.Value
+local stamina = values.MaxStamina.CurrentStamina.Value
+local hunger = values.Hunger.Value
+
 while wait() do
-    game:GetService("Workspace").Players.noreportmepls89.Handler.Values.MaxStamina.CurrentStamina.Value = game:GetService("Workspace").Players.noreportmepls89.Handler.Values.MaxStamina.CurrentStamina.Value + 1
+    stamina = stamina + 1
+    hunger = hunger + 1
+    Thirst = Thirst + 1
 end
