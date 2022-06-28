@@ -1,3 +1,0 @@
-while wait() do
-    game:GetService("Workspace").Players.noreportmepls89.Handler.Values.MaxStamina.CurrentStamina.Value = game:GetService("Workspace").Players.noreportmepls89.Handler.Values.MaxStamina.CurrentStamina.Value + 1
-end
