@@ -1,4 +1,4 @@
-game.Players.LocalPlayer:WaitForChild("Character"):WaitForChild("Humanoid")
+wait(5)
 wait(0.5)local ba=Instance.new("ScreenGui")
 local ca=Instance.new("TextLabel")local da=Instance.new("Frame")
 local _b=Instance.new("TextLabel")local ab=Instance.new("TextLabel")ba.Parent=game.CoreGui
@@ -25,7 +25,7 @@ local url = "https://games.roblox.com/v1/games/6708206173/servers/Public?exclude
 local data = game:HttpGet(url)
 local newdata0 = game:GetService'HttpService':JSONDecode(data)
 local table = newdata0["data"]
-local minimum_players = 45
+local minimum_players = 48
 local found = false
 local TeleportService = game:GetService("TeleportService")
 local playerss = game.Players:GetPlayers()
